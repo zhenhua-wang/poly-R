@@ -81,13 +81,6 @@ templates."
   :type '(repeat string)
   :group 'poly-R)
 
-(define-innermode poly-r-markdown-inline-code-innermode poly-markdown-inline-code-innermode
-  :mode 'ess-r-mode
-  :head-matcher (cons "^[ \t]*\\(```{?[rR].*\n\\)" 1)
-  :tail-matcher (cons "^[ \t]*\\(```\\)[ \t]*$" 1)
-  :head-mode 'host
-  :tail-mode 'host)
-
 (define-obsolete-variable-alias 'pm-poly/markdown+R 'poly-markdown+r-polymode "v0.2")
 (define-obsolete-variable-alias 'pm-poly/markdown+r 'poly-markdown+r-polymode "v0.2")
 ;;;###autoload
@@ -96,10 +89,11 @@ templates."
 ;;;###autoload
 (define-obsolete-variable-alias 'poly-markdown+R-mode-map 'poly-markdown+r-mode-map "v0.2")
 ;;;###autoload (autoload 'poly-markdown+r-mode "poly-R")
-(define-polymode poly-markdown+r-mode poly-markdown-mode :lighter " PM-Rmd"
-  :innermodes '(:inherit poly-r-markdown-inline-code-innermode))
+(define-polymode poly-markdown+r-mode poly-markdown-mode
+  :lighter " PM-Rmd"
+  :hostmode 'poly-markdown-hostmode)
 ;;;###autoload (autoload 'poly-gfm+r-mode "poly-R")
-(define-polymode poly-gfm+r-mode poly-markdown+r-mode 
+(define-polymode poly-gfm+r-mode poly-markdown+r-mode
   :lighter " PM-Rmd(gfm)"
   :hostmode 'poly-gfm-hostmode)
 
